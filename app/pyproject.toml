@@ -1,0 +1,22 @@
+[project]
+name = "gke-adk-otel-demo"
+version = "0.1.0"
+description = "ADK Default FastAPI Agent demoing GKE Managed OpenTelemetry GA"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk[otel]>=2.13.0",
+    "python-dotenv>=1.0.1",
+    "uvicorn>=0.34.0",
+    "fsspec[gcs]==2025.10.0",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.deptry.package_module_name_map]
+google-adk = ["google"]
+python-dotenv = ["dotenv"]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = ["fsspec"]

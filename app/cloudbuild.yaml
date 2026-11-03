@@ -1,0 +1,19 @@
+# Build and push the demo image to Artifact Registry.
+# Run ./build.sh from the repo root; it fills the substitutions from .env.
+# (Manual equivalent, from app/:
+#   gcloud builds submit --config cloudbuild.yaml --substitutions _LOCATION=us-central1,_REPO=adk-demo)
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/adk-demo-agent:${_TAG}
+      - .
+images:
+  - ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/adk-demo-agent:${_TAG}
+substitutions:
+  _LOCATION: us-central1
+  _REPO: adk-demo
+  _TAG: latest
+options:
+  logging: CLOUD_LOGGING_ONLY

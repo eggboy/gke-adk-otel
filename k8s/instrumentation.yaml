@@ -1,0 +1,14 @@
+apiVersion: telemetry.googleapis.com/v1alpha1
+kind: Instrumentation
+metadata:
+  namespace: adk-demo
+  name: adk-demo-instrumentation
+spec:
+  selector:
+    matchLabels:
+      app: adk-demo-agent
+  autoInstrumentationConfig:
+    configInjection:
+      enabled: true
+  promptsResponses:
+    uploadBasePath: gs://${BUCKET_NAME}/adk-demo

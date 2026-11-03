@@ -1,0 +1,6 @@
+# build.sh runs `gcloud builds submit` from this directory. Without this file
+# gcloud uploads everything here, including a local .venv/ and .env.
+.venv/
+__pycache__/
+*.pyc
+.env
